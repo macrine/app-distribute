@@ -49,7 +49,8 @@ export class AppController {
   showView(@Param() params, @Req() req: Request) {
     let isiOS = req.headers['user-agent'].indexOf('iPhone')>-1;
     let dirName = params.name;
-    let viewLink = req.headers['host']+'/'; // 页面链接
+    // let viewLink = req.headers['host']+'/'; // 页面链接
+    let viewLink = 'app.fuliwe.com/'; // 页面链接
 
     let appInfo = this.appService.getAppInfo(`upload/${dirName}`);
     let versionList = this.appService.getVersionList(`upload/${dirName}`, isiOS, viewLink);
@@ -78,7 +79,7 @@ export class AppController {
     let type = file.originalname.indexOf('.ipa')>0?'ipa':'apk';
 
     let newFileName = dirName+ '_'+ body.versionName +'.'+ type; //安装包文件名
-    let viewLink = 'http://'+req.headers['host']+'/'+dirName; // 页面链接
+    let viewLink = 'http://'+'app.fuliwe.com'+'/'+dirName; // 页面链接
     let packageLink = viewLink + '/' +newFileName; // 安装包链接
 
     this.appService.createUploadDir(dir);
