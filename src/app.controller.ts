@@ -22,7 +22,7 @@ export class AppController {
 
 
 
-    let apps = this.appService.getAppList('upload');
+    let apps = this.appService.getAppList(path.join(__dirname,'upload'));
 
     return {
       title: '首页',
