@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UploadDto } from './upload.dto';
 import { createWriteStream } from 'fs';
+import * as path from 'path';
 
 
 @Controller()
@@ -15,15 +16,10 @@ export class AppController {
   getHello(@Req() req: Request) {
     // console.log(req);
     // console.log(req);
-    console.log(req.headers);
-    console.log(req.headers['host']);
-    for(let z in req) {
-      if(typeof req[z] == 'string') {
-        console.log(z);
-        // console.log(req.protocol);
+    console.log(__dirname);
+    console.log(__dirname);
 
-      }
-    }
+
 
 
     let apps = this.appService.getAppList('upload');
@@ -74,7 +70,10 @@ export class AppController {
     let name = body.name;
     let arr = body.package.split('.');
     let dirName = arr[arr.length-1];
-    const dir = `upload/${dirName}`;
+    // const dir = `upload/${dirName}`;
+    const dir = path.join(__dirname, '..', 'upload', dirName);
+    console.log(dir);
+
 
     let type = file.originalname.indexOf('.ipa')>0?'ipa':'apk';
 
@@ -83,7 +82,7 @@ export class AppController {
     let packageLink = viewLink + '/' +newFileName; // 安装包链接
 
     this.appService.createUploadDir(dir);
-    this.appService.saveAppInfos(`upload/${dirName}`, name, body.package, icon, body.versionName, newFileName, viewLink, type, packageLink);
+    this.appService.saveAppInfos(dir, name, body.package, icon, body.versionName, newFileName, viewLink, type, packageLink);
     return this.appService.uploadFile(dir,file, newFileName);
   }
 }

@@ -14,7 +14,7 @@ export class AppService {
 
   // 创建上传目录
   createUploadDir(dir) {
-    const dirArr = dir.split('/');
+    const dirArr = dir.split(path.sep);
     for (let i = 0; i < dirArr.length; i++) {
       if (i > 0) {
         dirArr[i] = path.join(dirArr[i - 1], dirArr[i]);
@@ -28,7 +28,7 @@ export class AppService {
   // 上传文件
   uploadFile(dir, file, newFileName) {
     const writeImage =
-      createWriteStream(path.join(__dirname, '..', dir, `${newFileName}`));
+      createWriteStream(path.join(dir, newFileName));
     writeImage.write(file.buffer);
     return true;
   }
