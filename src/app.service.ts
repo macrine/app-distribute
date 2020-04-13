@@ -84,7 +84,7 @@ export class AppService {
   // 读取app列表
   getAppList(dir) {
     if (!fs.existsSync(dir)) {
-      return {};
+      return [];
     }
 
     let list = fs.readdirSync(dir);

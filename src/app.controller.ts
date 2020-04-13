@@ -27,6 +27,7 @@ export class AppController {
 
 
     let apps = this.appService.getAppList('upload');
+
     return {
       title: '首页',
       apps: apps
