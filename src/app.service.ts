@@ -79,7 +79,11 @@ export class AppService {
 
   // 读取app信息
   getAppInfo(dir) {
+    console.log(333333)
+    console.log(dir)
     let jsonFile = path.join(dir, 'info.json');
+    console.log(4444444444)
+    console.log(jsonFile)
     if (fs.existsSync(jsonFile)) {
       let data = fs.readFileSync(jsonFile);
       return JSON.parse(data.toString());
@@ -89,9 +93,12 @@ export class AppService {
 
   // 读取app列表
   getAppList(dir) {
+    console.log(dir);
     if (!fs.existsSync(dir)) {
+      console.log(111111);
       return [];
     }
+    console.log(222222);
 
     let list = fs.readdirSync(dir);
     let tmp = list.map(item => {
@@ -108,7 +115,10 @@ export class AppService {
   }
 
   // 读取app版本列表
-  getVersionList(dir, isiOS, viewLink) {
+  getVersionList(shortDir, isiOS, viewLink) {
+
+    let dir = path.join(__dirname, '..', shortDir);
+
     if (!fs.existsSync(dir)) {
       return {};
     }
@@ -123,7 +133,8 @@ export class AppService {
         // console.log(fs.readFileSync(file));
       }
 
-      let link = dir + '/' + item;
+      let link = shortDir + '/' + item;
+      console.log(link)
       if (isiOS) {
         link = 'itms-services://?action=download-manifest&url=https://' + viewLink + link;
       }

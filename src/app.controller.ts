@@ -14,15 +14,8 @@ export class AppController {
   @Get()
   @Render('index')
   getHello(@Req() req: Request) {
-    // console.log(req);
-    // console.log(req);
-    console.log(__dirname);
-    console.log(__dirname);
 
-
-
-
-    let apps = this.appService.getAppList(path.join(__dirname,'upload'));
+    let apps = this.appService.getAppList(path.join(__dirname, '..','upload'));
 
     return {
       title: '首页',
@@ -48,7 +41,7 @@ export class AppController {
     // let viewLink = req.headers['host']+'/'; // 页面链接
     let viewLink = 'app.fuliwe.com/'; // 页面链接
 
-    let appInfo = this.appService.getAppInfo(`upload/${dirName}`);
+    let appInfo = this.appService.getAppInfo(`../upload/${dirName}`);
     let versionList = this.appService.getVersionList(`upload/${dirName}`, isiOS, viewLink);
     return {appInfo: appInfo, versionList: versionList}
   }
