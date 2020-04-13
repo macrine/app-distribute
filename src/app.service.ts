@@ -16,6 +16,9 @@ export class AppService {
   createUploadDir(dir) {
     const dirArr = dir.split(path.sep);
     for (let i = 0; i < dirArr.length; i++) {
+      if (!dirArr[0]) {
+        dirArr[0] = path.sep;
+      }
       if (i > 0) {
         dirArr[i] = path.join(dirArr[i - 1], dirArr[i]);
       }
@@ -121,8 +124,8 @@ export class AppService {
       }
 
       let link = dir + '/' + item;
-      if(isiOS) {
-        link = 'itms-services://?action=download-manifest&url=https://' +viewLink+ link;
+      if (isiOS) {
+        link = 'itms-services://?action=download-manifest&url=https://' + viewLink + link;
       }
 
       return {
