@@ -81,8 +81,13 @@ export class AppController {
     let viewLink = 'http://'+'app.fuliwe.com'+'/'+dirName; // 页面链接
     let packageLink = viewLink + '/' +newFileName; // 安装包链接
 
+    console.log(3333333333);
     this.appService.createUploadDir(dir);
+    console.log(44444444444);
+
     this.appService.saveAppInfos(dir, name, body.package, icon, body.versionName, newFileName, viewLink, type, packageLink);
+    console.log(555555555);
+
     return this.appService.uploadFile(dir,file, newFileName);
   }
 }
