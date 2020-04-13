@@ -22,6 +22,7 @@ export class AppService {
       console.log(dirArr);
       console.log(dirArr[i]);
       if (dirArr[i] && !fs.existsSync(dirArr[i])) {
+        console.log('need mkdir:' + dirArr[i]);
         fs.mkdirSync(dirArr[i]);
       }
     }
