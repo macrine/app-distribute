@@ -72,7 +72,7 @@ export class AppController {
 
     let newFileName = dirName+ '_'+ body.versionName +'.'+ type; //安装包文件名
     let viewLink = 'http://'+'app.fuliwe.com'+'/'+dirName; // 页面链接
-    let packageLink = viewLink + '/upload/' +newFileName; // 安装包链接
+    let packageLink = 'http://app.fuliwe.com/upload/' +dirName + '/'+newFileName; // 安装包链接
 
     console.log(3333333333);
     this.appService.createUploadDir(dir);
