@@ -19,6 +19,8 @@ export class AppService {
       if (i > 0) {
         dirArr[i] = path.join(dirArr[i - 1], dirArr[i]);
       }
+      console.log(dirArr);
+      console.log(dirArr[i]);
       if (!fs.existsSync(dirArr[i])) {
         fs.mkdirSync(dirArr[i]);
       }
