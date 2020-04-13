@@ -1,0 +1,46 @@
+body {
+  background: #F6F6F6;
+  &.body-view {
+    background: #fff;
+  }
+}
+
+.info {
+
+  .icon img {
+    width:100px;
+    height: 100px;
+  }
+
+}
+
+.list {
+  width: 90%;
+  .item {
+    &:first-child {
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1px;
+      border-bottom: solid 1px #e0e0e0;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+
+// 首页app信息
+.app-item {
+  background: #fff;
+  border-radius: 10px;
+  height: 100%;
+  .icon {
+    width:100px;
+    height: 100px;
+    display: block;
+    margin:0 auto;
+  }
+  &:hover {
+    transform: translate(0, -4px);
+    transition: all 0.4s ease-in-out;
+  }
+}

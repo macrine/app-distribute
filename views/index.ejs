@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/public/app-info-parser.js"></script>
+    <link rel="stylesheet" href="public/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 my-3">
+            <div class="app-item">
+                <input type="file" name="file" id="file" onchange="fileSelect()" />
+            </div>
+        </div>
+        <% apps.forEach(function(app) { %>
+            <div class="col-12 col-md-6 col-lg-4 my-3">
+                <div class="app-item px-3 py-4">
+
+                    <img alt="icon" src="<%= app.icon %>" class="icon" />
+                    <div class="text-center pt-3"><%= app.name %></div>
+                    <div class="pb-5">链接：<span class="text-black-50"><%= app.link %></span></div>
+                    <div class="text-center">
+                        <a class="btn btn-primary" href="<%= app.link %>" target="_blank">预览</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+
+
+<script>
+  function fileSelect () {
+    const files = document.getElementById('file').files
+    const parser = new AppInfoParser(files[0])
+    parser.parse().then(result => {
+      console.log('app info ----> ', result)
+      // console.log('icon base64 ----> ', result.icon)
+
+
+      let formData = new FormData();
+      formData.append("icon", result.icon);
+      formData.append("file", files[0]);
+      if(result.CFBundleShortVersionString) {
+        // iOS
+        formData.append("name", result.CFBundleDisplayName);
+        formData.append("package", result.CFBundleIdentifier);
+        formData.append("versionName", result.CFBundleShortVersionString);
+      } else {
+        // 安卓
+        formData.append("name", result.application.label[0]);
+        formData.append("package", result.package);
+        formData.append("versionName", result.versionName);
+      }
+
+
+
+
+      $.ajax({
+        url: 'upload',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success:function() {
+          console.log(1111111)
+
+        }
+      })
+
+
+
+
+
+
+    }).catch(err => {
+      console.log('err ----> ', err)
+    })
+
+
+  }
+</script>
+</body>
+</html>
