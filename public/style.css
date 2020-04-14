@@ -29,4 +29,26 @@ body {
     transform: translate(0, -4px);
     transition: all 0.4s ease-in-out; }
 
+.app-upload {
+  background: #F8BA0B;
+  position: relative;
+  color: #fff; }
+  .app-upload:hover {
+    transform: translate(0, 0); }
+  .app-upload .text {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .app-upload .text div {
+      padding-bottom: 30px; }
+  .app-upload input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    cursor: pointer; }
+
 /*# sourceMappingURL=style.css.map */

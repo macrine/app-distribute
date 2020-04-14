@@ -75,3 +75,10 @@ https://github.com/chenquincy/app-info-parser
 ## License
 
   Nest is [MIT licensed](LICENSE).
+
+
+## Nginx 反向代理设置（获取真实域名）
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;

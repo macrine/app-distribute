@@ -44,3 +44,32 @@ body {
     transition: all 0.4s ease-in-out;
   }
 }
+
+
+// 上传
+.app-upload {
+  background: #F8BA0B;
+  position: relative;
+  color: #fff;
+  &:hover {
+    transform: translate(0, 0);
+  }
+  .text {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    div {
+      padding-bottom: 30px;
+    }
+  }
+  input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
